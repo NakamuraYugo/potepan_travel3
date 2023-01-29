@@ -1,0 +1,79 @@
+<div class="container-fiuld user-new"> 
+    <div class="row">
+        <div class="col-lg-2 user-nav user-nav-pc d-lg-block d-none">
+    <ul>
+        <li class="active">
+          <%= link_to "アカウント", user_path %>
+        </li>
+        <li class="">
+          <%= link_to "プロフィール", profile_user_path %> 
+        </li>
+    </ul>
+</div>
+<div class="col-lg-2 user-nav user-nav-mobile d-lg-none">
+    <ul>
+        <li class="active">
+          <%= link_to "アカウント", user_path %> 
+        </li>
+        <li class="">
+          <%= link_to "プロフィール", profile_user_path %>  
+        </li>
+    </ul>
+</div>
+<div class="col-lg-10 user-view">
+  <div class="user-view-box">
+    <div class="update-content">
+        <div class="row">
+            <h5>プロフィール</h5>
+        </div>
+    </div>
+      <!-- <form class="edit_user" id="edit_user_81" enctype="multipart/form-data" action="/users/profile" accept-charset="UTF-8" method="post"> -->
+    <%= form_with model: @user, local: true do |f| %>
+      <input type="hidden" name="_method" value="patch">
+      <input type="hidden" name="authenticity_token" value="ItF3/IfCnnMQcedy2nDwBahUyxBnvnD6+c11KBv2HgHUCuiLWzjMPGRB5h0W2uuFVeWYSaOA5VZollnl5BGyWw==">
+      <div class="update-content">
+          <div class="row">
+              <div class="col-md-6 offset-md-3">
+                  <div class="icon-box">
+                        <% if @user.user_image.present? %>
+                          <%= image_tag @user.user_image, class: "icon-image host-icon", alt: "アイコン画像" %>
+                        <% else %>
+                          <%= image_tag 'default_icon.jpeg' , class: "host-icon" %>
+                        <% end %>
+                     
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="update-content">
+          <div class="row">
+              <%= f.label :user_image, "アイコン画像", class: "col-md-3 required-a" %>
+              <%= f.file_field :user_image, class: 'mb-4 col-md-9 form-control border-0', accept: 'image/*', placeholder: "アイコン画像をアップロード", id: "user_image"  %>
+          </div>
+      </div>
+      <div class="update-content">
+          <div class="row">
+              <%= f.label :name, "名前", class: "col-md-3 required-a" %>
+              <%= f.text_field :name, class: 'mb-4 col-md-9 form-control', accept: 'image/*', placeholder: "名前を入力", id: "user_name"  %> 
+              <!-- <label class="col-md-3 required-a" for="name">名前</label>
+              <input class="form-control mb-4 col-md-9" placeholder="名前を入力" type="text" value="nanana" name="user[name]" id="user_name"> -->
+          </div>
+      </div>
+      <div class="update-content">
+          <div class="row">
+              <%= f.label :introduction, "自己紹介", class: "col-md-3 required-a" %>
+              <%= f.text_field :introduction, class: 'mb-4 col-md-9 form-control', placeholder: "自己紹介を入力", id: "user_introduction", rows: 5  %>  
+              <!-- <label class="col-md-3 required-a" for="introduction">自己紹介</label>
+              <textarea rows="5" class="form-control mb-4 col-md-9" placeholder="自己紹介を入力" name="user[introduction]" id="user_introduction"></textarea> -->
+          </div>
+      </div>
+      <div class="update-content">
+        <div class="row">
+          <%= f.submit "更新", class: "btn btn-primary col-md-2 mx-3" %>
+          <!-- <input type="submit" name="commit" value="更新" class="col-md-2 btn btn-primary mx-3" data-disable-with="更新"> -->
+        </div>
+      </div>
+    <% end %>            
+  </div>
+</div>
+

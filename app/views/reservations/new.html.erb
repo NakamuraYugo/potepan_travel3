@@ -1,0 +1,43 @@
+<%= form_with model: [@room, @reservation], method: :post, local: true do |f| %>
+  <%= render 'shared/error_messages', obj: f.object %>
+
+  <h1>予約内容確認</h1>
+
+  <ol class="nav">
+    <li>1.入力</li>
+    <li class="current">2.確認</li>
+    <li>3.完了</li>
+  </ol>
+
+  <h3>¥<%= @reservation.room.price %>/日</h3>
+
+  <%= f.label :start_dat,"開始日" %>
+  <%= f.text_field  :start_date, class: "form_control", readonly: true %>
+
+  <%= f.label :end_date, "終了日" %>
+  <%= f.text_field  :end_date, class: "form_control", readonly: true %>
+
+  <h6>使用日数： <%= (@reservation.end_date - @reservation.start_date).to_i  %></h6>
+  <!-- start_dateとend_dateのデータ型がDatetime型になっていた。その状態で上記の計算を行うとわけわからん数字になる。なのでデータ型を変更してみた結果うまく動いた。 -->
+  <h6>人数：<%= @reservation.number_people %></h6>
+
+  <%= f.label :total_price, "合計金額" %>
+  <%= f.text_field  :total_price, class: "form_control", readonly: true, value: (@reservation.price * @reservation.number_people * (@reservation.end_date - @reservation.start_date).to_i) %>
+
+  
+  
+  <%= f.hidden_field  :room_id, class: "form_control" %>
+  
+  <%= f.hidden_field  :user_id, class: "form_control" %>
+  
+  <%= f.hidden_field  :number_people, class: "form_control" %>
+
+  
+
+  <p>上記内容でよろしければ「予約を確定」を押してください</p>
+
+  
+  <%= link_to "ルーム詳細に戻る", room_path(@room.id)  %>
+
+  <%= f.submit '予約を確定' %> 
+<% end %>

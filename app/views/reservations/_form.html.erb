@@ -1,0 +1,21 @@
+<div class="row mb-3">
+  <div class="col-lg-8 offset-lg-2">
+    <%= form_with model: [room, reservation], url: room_reservations_new_path(room), local: true do |f| %>
+      <%= render 'shared/error_messages', obj: f.object %>
+      <%= f.label :start_date %>
+      <%= f.date_field :start_date, class: 'form-control mb-3 order-date-form', min: Date.current, placeholder: "年/月/日" %>
+      
+      <%= f.label :end_date %>
+      <%= f.date_field :end_date, class: 'form-control mb-3 order-date-form', min: Date.current, placeholder: "年/月/日" %>
+      
+      <%= f.label :number_people %>
+      <%= f.number_field :number_people, class: 'form-control mb-3 order-date-form' %>
+      
+      <%= f.hidden_field :room_id, value: room.id %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <%= f.hidden_field :price, value: room.price %>
+      
+      <%= f.submit "確認画面へ", class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>
