@@ -95,6 +95,11 @@ label {
   transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
+.form-field {
+  display: block;
+  margin: 0 15px;
+}
+
 @media screen and (min-width: 1200px) {
   .container {
     max-width: 1140px;
