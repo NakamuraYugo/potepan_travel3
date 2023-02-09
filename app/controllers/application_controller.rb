@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   # 以下を記述
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_q #すべてのアクションが行われる前にset_qアクションを行う。限定もできる。
+  before_action :configure_account_update_params, if: :devise_controller?
 
   
   def search
@@ -21,5 +22,11 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     #以下の:name部分は追加したカラム名に変える
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :introduction, :user_image])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:email, :password, :password_confirmation, :current_password])
+    #アカウントedit時にemail,encrypted_passwordが登録できる
+  end
+
+  def configure_account_update_params
+    devise_parameter_sanitizer.permit(:account_update, keys: [:email, :password])
   end
 end

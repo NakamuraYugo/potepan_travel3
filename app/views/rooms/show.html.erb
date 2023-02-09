@@ -1,10 +1,14 @@
 <div class="container room-show">
   <div class="row">
     <div class="col-md-8">
-      <%= image_tag @room.room_image.url,class: 'card-img-top img-fluid', size: '300x200' %>
+      <% if @room.room_image.blank? %>
+        <%= image_tag 'default_room.jpg', class: 'card-img-top img-fluid', size: '300x200'  %>
+      <% else %>
+        <%= image_tag @room.room_image.url,class: 'card-img-top img-fluid', size: '300x200' %> 
+      <% end %>
       <div class="room-details">
         <div class="room-detail-icon">
-          <%= link_to image_tag('default_icon.jpg', class:'navbar-brand'),root_path %>
+          <%= link_to image_tag('default_icon.jpg', class:'navbar-brand', size: '100x100'),root_path %>
         </div>
         <div class="room-detail-profile">
           <p class="room-detail-prifile-name"><%= @room.name %></p>
@@ -24,6 +28,11 @@
 
         </div>
       </div>
+    </div>
+    <div class="back-link">
+      <%= link_to :back do %>
+        <button>戻る</button>
+      <% end %>
     </div>
   </div>
 </div>

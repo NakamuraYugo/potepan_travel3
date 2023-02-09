@@ -5,5 +5,7 @@ class Room < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: 255 }
   validates :introduction, presence: true, length: { maximum: 65_535 }
+  validates :price, presence: true
+  validates :address, presence: true
 
 end

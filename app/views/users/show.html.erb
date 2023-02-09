@@ -3,20 +3,20 @@
         <div class="col-lg-2 user-nav user-nav-pc d-lg-block d-none">
     <ul>
         <li class="active">
-          <%= link_to "アカウント", user_path %>
+          <%= link_to "アカウント", user_path(current_user.id) %>
         </li>
         <li class="">
-          <%= link_to "プロフィール", profile_user_path %> 
+          <%= link_to "プロフィール", profile_user_path(current_user.id) %> 
         </li>
     </ul>
 </div>
 <div class="col-lg-2 user-nav user-nav-mobile d-lg-none">
     <ul>
         <li class="active">
-          <%= link_to "アカウント", user_path %>
+          <%= link_to "アカウント", user_path(current_user.id) %>
         </li>
         <li class="">
-          <%= link_to "プロフィール", profile_user_path %> 
+          <%= link_to "プロフィール", profile_user_path(current_user.id) %> 
         </li>
     </ul>
 </div>
@@ -36,7 +36,7 @@
                 <div class="update-content">
                     <div class="row">
                         <label class="col-md-3" for="password">パスワード</label>
-                        <div class="col-md-9"><%= @user.encrypted_password %></div>
+                        <div class="col-md-9"><p> ************* </p></div>
                     </div>
                 </div>
                 <div class="update-content">

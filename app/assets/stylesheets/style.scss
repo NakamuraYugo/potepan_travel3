@@ -241,7 +241,7 @@ dl, ol, ul {
 }
 
 .room-new .room-view-box {
-  max-width: 880px;
+  max-width: 1000px;
   background-color: #fff;
   border: 1px solid #eaedef;
   margin: 50px auto;
@@ -250,7 +250,7 @@ dl, ol, ul {
 .room-new .update-content {
   border-bottom: 1px solid #eaedef;
   padding: 20px;
-  margin: 0 15px;
+  margin: 40px 15px;
   font-size: 16px;
 }
 
@@ -373,7 +373,15 @@ tr {
 }
 
 .footer {
-  /**position: absolute; **/
-  bottom: 0;
+  color:#fff;
+  margin: 20px 0;
+  align-items: center;
+  background-color: #1c1d3b;
+  display: flex;
+  height: 465px;
+}
+
+.field_with_errors {
+  display: contents;
 }
 
