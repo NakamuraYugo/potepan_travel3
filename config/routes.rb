@@ -29,7 +29,7 @@ Rails.application.routes.draw do
 
   root to: "start_pages#top"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  resources :users, only: %i[show]
+  resources :users, only: %i[show edit]
   resources :rooms, only: %i[index new create show] do
     resources :reservations, only: %i[index create show], shallow: true
     match '/reservations/new', to: 'reservations#new', via: 'post'

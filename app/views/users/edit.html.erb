@@ -1,0 +1,48 @@
+<div class="col-lg-10 user-view">
+  <div class="user-view-box">
+    <div class="update-content">
+      <div class="row">
+        <%= form_with model: @user, url: user_path, method: :patch,  local: true do |f| %>
+          <%= render 'shared/error_messages', obj: f.object %>
+          <input type="hidden" name="_method" value="patch">
+          <input type="hidden" name="authenticity_token" value="JhbLht4wd04YLvKFoErwSayLGnJf/C8QEheLH4MvncLotWinBgWF9tv1hJezTRAtQxZel+6vQy2TUs2Emr9jcQ==">
+          <div class="row">
+            <div class="col-md-6 offset-md-3">
+              <div class="icon-box">
+                <% if @user.user_image.blank? %>
+                  <%= image_tag 'default_icon.jpg', class: 'card-img-top img-fluid', size: '150x100'  %>
+                <% else %>
+                  <%= image_tag @user.user_image.url,class: 'card-img-top img-fluid', size: '150x100' %> 
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <div class="update-content">
+            <div class="row">
+              <%= f.label :name, "名前", class: "col-md-3" %>
+              <%= f.text_field :name, class: 'mb-4 col-md-9 form-control', placeholder: "名前を入力", id: "user_name"  %> 
+            </div>
+          </div>
+          <div class="update-content">
+            <div class="row">
+              <%= f.label :introduction, "自己紹介", class: "col-md-3" %>
+              <%= f.text_field :introduction, class: 'mb-4 col-md-9 form-control', placeholder: "自己紹介を入力", id: "user_introduction", rows: 5  %>  
+            </div>
+          </div>
+          <div class="update-content">
+            <div class="row">
+              <%= f.label :user_image, "アイコン画像", class: "col-md-3" %>
+              <%= f.file_field :user_image, class: 'mb-4 col-md-9 form-control border-0', accept: 'image/*', placeholder: "アイコン画像をアップロード", id: "user_image"  %>
+              <%= f.hidden_field :user_image_cache %>
+            </div>
+          </div>
+          <div class="update-content">
+            <div class="row">
+              <%= f.submit "更新", class: "btn btn-primary col-md-2 mx-3" %>
+            </div>
+          </div>
+        <% end %>            
+      </div>
+    </div>
+  </div>
+</div>

@@ -60,5 +60,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'draper', '3.1.0'
 gem 'carrierwave', '~> 2.0'
+gem 'mini_magick'
 gem 'ransack'
 gem 'rails-i18n'
