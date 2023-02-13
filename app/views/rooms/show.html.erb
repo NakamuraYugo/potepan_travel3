@@ -8,7 +8,12 @@
       <% end %>
       <div class="room-details">
         <div class="room-detail-icon">
-          <%= link_to image_tag('default_icon.jpg', class:'navbar-brand', size: '100x100'),root_path %>
+          <!-- <%= link_to image_tag('default_icon.jpg', class:'navbar-brand', size: '100x100'),root_path %> -->
+          <% if @user.user_image.blank? %>
+            <%= image_tag 'default_icon.jpg', class: 'card-img-top img-fluid', size: '100x100'  %>
+          <% else %>
+            <%= image_tag @user.user_image.url,class: 'card-img-top img-fluid', size: '100x100' %> 
+          <% end %>
         </div>
         <div class="room-detail-profile">
           <p class="room-detail-prifile-name"><%= @room.name %></p>

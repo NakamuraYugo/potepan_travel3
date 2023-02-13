@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   # 以下を記述
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_q #すべてのアクションが行われる前にset_qアクションを行う。限定もできる。
+  before_action :set_user, if: -> { user_signed_in? } 
+  #これでログインしている時(trueを返すとき)だけbefore_actionが実行される。user_signed_in?はdeviseのメソッド。
   before_action :configure_account_update_params, if: :devise_controller?
 
   
@@ -15,6 +17,10 @@ class ApplicationController < ActionController::Base
 
   def set_q
     @q = Room.ransack(params[:q]) #ここで検索機能で入力された値を受け取っている。
+  end
+
+  def set_user
+    @user = User.find(current_user.id)
   end
 
   protected
