@@ -1,0 +1,62 @@
+<div class="container-fiuld user-new"> 
+    <div class="row">
+        <div class="col-lg-2 user-nav user-nav-pc d-lg-block d-none">
+    <ul>
+        <li class="active">
+          <%= link_to "アカウント", user_path %>
+        </li>
+        <li class="">
+          <%= link_to "プロフィール", profile_user_path %> 
+        </li>
+    </ul>
+</div>
+<div class="col-lg-2 user-nav user-nav-mobile d-lg-none">
+    <ul>
+        <li class="active">
+          <%= link_to "アカウント", user_path %> 
+        </li>
+        <li class="">
+          <%= link_to "プロフィール", profile_user_path %>  
+        </li>
+    </ul>
+</div>
+<div class="col-lg-10 user-view">
+  <div class="user-view-box">
+    <div class="update-content">
+      <div class="row">
+        <h5>プロフィール</h5>
+      </div>
+      <div class="update-content">
+        <div class="row">
+          <div class="col-md-6 offset-md-3">
+            <div class="icon-box">
+              <% if @user.user_image.blank? %>
+                <%= image_tag 'default_icon.jpg', class: 'card-img-top img-fluid', size: '150x100'  %>
+              <% else %>
+                <%= image_tag @user.user_image.url,class: 'card-img-top img-fluid', size: '150x100' %> 
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="update-content">
+        <div class="row">
+          <label class="col-md-3" for="name">名前</label>
+          <div class="mb-4 col-md-9"><%= @user.name %></div>
+        </div>
+      </div>
+      <div class="update-content">
+        <div class="row">
+          <label class="col-md-3" for="introduction">紹介</label>
+          <div class="mb-4 col-md-9"><%= @user.introduction %></div>
+        </div>
+      </div>
+      <div class="update-content">
+        <div class="row">
+          <%= link_to '編集', edit_user_path, class: "btn btn-primary mx-3" %>
+        </div>
+      </div>
+    </div>  
+  </div>
+</div>
+
